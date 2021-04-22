@@ -1,0 +1,25 @@
+#wrapper{
+width: 960px;
+height: auto;
+background-color: aliceblue;
+padding: 20px;
+
+}
+h1{
+    display: inline-block;
+
+}
+a{  
+    margin-left: 150px;
+
+}
+.info{
+    border: 2px solid black;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    font-style: italic;
+
+
+
+}

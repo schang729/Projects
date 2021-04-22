@@ -1,0 +1,24 @@
+h1{
+    display: inline-block;
+
+}
+#wrapper{
+    width: 700px;
+    height: auto;
+    background-color: aliceblue;
+    padding: 20px;
+
+}
+.logout{
+    margin-left: 150px;
+
+}
+.form{
+    width: 400px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 100px;
+
+}

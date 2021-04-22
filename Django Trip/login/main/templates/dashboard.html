@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Trip Buddy Dashboard</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/style2.css' %}" />
+</head>
+
+<body>
+	<div id="wrapper">
+		<h1 style="text-transform:capitalize;">Hello {{logged_user.first_name}} {{logged_user.last_name}}!</h1>
+		<a href="/user/logout" class="logout">Logout</a>
+		<a href="/trips/new"><button>Create a new trip!</button></a>
+		<h2>Your Trip:</h2>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Destination</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Plan</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for trip in logged_user.trips.all %}
+				<tr>
+					<td><a href="/trips/{{trip.id}}">{{trip.dest}}</a></td>
+					<td>{{ trip.start_date|date:"SHORT_DATE_FORMAT" }}</td>
+					<td>{{ trip.end_date|date:"SHORT_DATE_FORMAT" }}</td>
+					<td>{{ trip.plan }}</td>
+					<td>
+						<a href="/trips/delete/{{trip.id}}">Remove</a> |
+						<a href="/trips/edit/{{trip.id}}">Edit</a>
+					</td>
+				</tr>
+				{% endfor %}
+				{% for trip in logged_user.join_trip.all %}
+				<tr>
+					<td><a href="/trips/{{trip.id}}">{{trip.dest}}</a></td>
+					<td>{{ trip.start_date|date:"SHORT_DATE_FORMAT" }}</td>
+					<td>{{ trip.end_date|date:"SHORT_DATE_FORMAT" }}</td>
+					<td>{{ trip.plan }}</td>
+					<td><a href="/trips/cancel/{{trip.id}}">Cancel</a></td>
+
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<h2>Other People's trips</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Destination</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Plan</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for trip in other_trip %}
+				{% if trip not in logged_user.join_trip.all %}
+				<tr>
+					<td><a href="/trips/{{trip.id}}">{{trip.dest}}</a></td>
+					<td>{{ trip.start_date|date:"SHORT_DATE_FORMAT" }}</td>
+					<td>{{ trip.end_date|date:"SHORT_DATE_FORMAT" }}</td>
+					<td>{{ trip.plan }}</td>
+					<td><a href="/trips/join/{{trip.id}}">Join</a></td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</body>
+
+</html>

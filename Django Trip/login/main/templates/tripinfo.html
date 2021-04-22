@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>View Trip</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/style5.css' %}" />
+</head>
+
+<body>
+	<div id="wrapper">
+		<h1>Hello {{logged_user.first_name}}! Read about this trip</h1>
+		<a href="/user/dashboard">Dashboard</a><a href="/user/logout">Logout</a>
+		<h2>{{trips.dest}}</h2>
+		<div class="info">
+			<p>Start Date: {{trips.start_date|date:"SHORT_DATE_FORMAT"}}</p>
+			<p>End Date: {{trips.end_date|date:"SHORT_DATE_FORMAT"}}</p>
+			<p>Created On: {{trips.created_at}}</p>
+			<p>Last Updated On: {{trips.updated_at}}</p>
+			<p>Plan: {{trips.plan}}</p>
+			<p>Created by {{trips.user.first_name}}</p>
+		</div>
+		<div class="other">
+			<h2>Other People who've joined the trip:</h2>
+			{%for user in trips.users_who_join.all %}
+			<p style="text-transform:capitalize;">{{user.first_name}} {{user.last_name}}</p>
+			{% endfor %}
+
+
+
+		</div>
+	</div>
+</body>
+
+</html>

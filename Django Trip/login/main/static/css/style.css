@@ -1,0 +1,27 @@
+#wrapper{
+    width: 960px;
+    height: auto;
+    background-color: aliceblue;
+}
+
+.reg{
+    width: 400px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 30px;
+    display: inline-block;
+
+
+}
+.login{
+    width: 400px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 30px;
+    display: inline-block;
+    vertical-align: top;
+
+
+}
